@@ -335,8 +335,6 @@
     <Content Include="App_Data\NuGetBackup\20180901-183318\Config\Lang\ru-RU.user.xml" />
     <Content Include="App_Data\NuGetBackup\20180901-183318\Config\Lang\sv-SE.user.xml" />
     <Content Include="App_Data\NuGetBackup\20180901-183318\Config\Lang\zh-CN.user.xml" />
-    <Content Include="App_Data\TEMP\ClientDependency\S001858-412c752eef2f4718c743d41711316041-map.xml" />
-    <Content Include="App_Data\TEMP\DistCache\LMW3SVC1ROOTUmbracoBase4-lastsynced.txt" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.controller.js" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.htm" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
@@ -419,15 +417,6 @@
     <Content Include="App_Data\NuGetBackup\20180901-183318\CopyLogs\UmbracoCopy.log" />
     <Content Include="App_Data\NuGetBackup\20180901-183318\Web.config" />
     <Content Include="App_Data\packages\installed\installedPackages.config" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\External\Index\segments.gen" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\External\Index\segments_1" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\InternalMember\Index\segments.gen" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\InternalMember\Index\segments_1" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\Internal\Index\segments.gen" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\Internal\Index\segments_2" />
-    <Content Include="App_Data\TEMP\ExamineIndexes\Internal\Index\_0.cfs" />
-    <Content Include="App_Data\TEMP\PluginCache\umbraco-plugins.S001858.hash" />
-    <Content Include="App_Data\TEMP\PluginCache\umbraco-plugins.S001858.list" />
     <Content Include="App_Data\umbraco.config" />
     <None Include="packages.config" />
     <Content Include="UmbracoBase4\App_Plugins\StarterKit\lessons.service.js" />
@@ -1950,8 +1939,8 @@
     <Content Include="Umbraco\assets\less\shadow.less" />
     <Content Include="Umbraco\assets\less\slider.less" />
     <Content Include="Umbraco\Install\Views\Index.cshtml" />
-    <Content Include="Umbraco\Install\Views\Web.config" />
-    <Content Include="Umbraco\Js\web.config" />
+    <None Include="Umbraco\Install\Views\Web.config" />
+    <None Include="Umbraco\Js\web.config" />
     <Content Include="Umbraco\lib\angular-dynamic-locale\tmhDynamicLocale.min.js.map" />
     <Content Include="Umbraco\lib\angular-local-storage\angular-local-storage.min.js.map" />
     <Content Include="Umbraco\lib\bootstrap-tabdrop\README.md" />
@@ -2049,10 +2038,10 @@
     <Content Include="Umbraco\Views\Preview\Radius.cshtml" />
     <Content Include="Umbraco\Views\Preview\Shadow.cshtml" />
     <Content Include="Umbraco\Views\Preview\Slider.cshtml" />
-    <Content Include="Umbraco\Views\Preview\web.config" />
+    <None Include="Umbraco\Views\Preview\web.config" />
     <Content Include="Umbraco\Webservices\TagsAutoCompleteHandler.ashx" />
     <Content Include="Umbraco\Webservices\TreeDataService.ashx" />
-    <Content Include="Umbraco\Xslt\Web.config" />
+    <None Include="Umbraco\Xslt\Web.config" />
     <Content Include="Views\Blog.cshtml" />
     <Content Include="Views\Blogpost.cshtml" />
     <Content Include="Views\Contact.cshtml" />
@@ -2070,6 +2059,7 @@
     <Content Include="Views\Partials\Navigation\SubNavigation.cshtml" />
     <Content Include="Views\Partials\Navigation\TopNavigation.cshtml" />
     <Content Include="Views\Partials\SectionHeader.cshtml" />
+    <None Include="Properties\PublishProfiles\umbraco.fcore.hostingasp.pl - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2093,7 +2083,6 @@
     <Folder Include="App_Data\NuGetBackup\20180901-183318\Umbraco\" />
     <Folder Include="App_Data\NuGetBackup\20180901-183318\Umbraco_Client\" />
     <Folder Include="App_Data\packages\created\" />
-    <Folder Include="App_Data\TEMP\Install\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
