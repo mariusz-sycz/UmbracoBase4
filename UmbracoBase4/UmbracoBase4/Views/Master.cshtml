@@ -1,66 +1,145 @@
 ﻿@inherits UmbracoTemplatePage
 @{
     Layout = null;
-
+    //Check AMP Page
+    var isAMP = this.Request.Url.ToString().Contains("amp=true");
+    
     // Get basic design settings from the homepage
     var home = (Home)Model.Content.Site();
     var colorTheme = Umbraco.GetPreValueAsString(home.ColorTheme);
     var font = Umbraco.GetPreValueAsString(home.Font);
+    var gtmCode = home.GoogleTagManagerCode;
+    var gaCode = home.GoogleAnaliticsCode;
+    var title = Model.Content.Name + " - "+ home.Sitename;
+    var mainImageUrl = (Model.Content.GetPropertyValue("MainImage") as Image) != null ?((Image)Model.Content.GetPropertyValue("MainImage")).Url : string.Empty;
+    var mainImageAlt = Model.Content.GetPropertyValue("MainImageAlt");
+    var x1 = Model.Content != null ? Model.Content.GetType().Name+":" : "";
+    foreach(var p in Model.Content != null ? Model.Content.GetType().GetProperties() :home.GetType().GetProperties() )
+    {x1+=","+p.Name;}
+    var image = Model.Content.GetPropertyValue("MainImage");
 }
 
 <!doctype html>
 <html>
 <head>
+    @if(!string.IsNullOrWhiteSpace(gtmCode))
+    {
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','@gtmCode');</script>
+        <!-- End Google Tag Manager -->
+    }
+    @if(!string.IsNullOrWhiteSpace(gaCode))
+    {
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=@gaCode"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', '@gaCode');
+        </script>
+    }
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 
-    <title>@Model.Content.Name - @home.Sitename</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
 
-    <link rel="stylesheet" href="@Url.Content("~/css/umbraco-starterkit-style.css")" />
-    @RenderSection("Header", required: false)
+    <title>@title</title>
+    <meta name="description" content="@Model.Content.GetPropertyValue("SeoMetaDescription")">
+    <meta name="author" content="@home.Author">
+    <meta name="keywords" content="@Model.Content.GetPropertyValue("Keywords")">
+    
+    <meta property="og:url" content="@this.Request.Url" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@title" />
+    <meta property="og:description" content="@Model.Content.GetPropertyValue("SeoMetaDescription")" />
+    <meta property="og:image" content="@mainImageUrl" />
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="J_Szkudlarek">
+    <meta name="twitter:title" content="@title">
+    <meta name="twitter:description" content="@Model.Content.GetPropertyValue("SeoMetaDescription")">
+    <meta name="twitter:image" content="@mainImageUrl">
+    <meta name="twitter:image:alt" content="@mainImageAlt">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <meta name="amp-experiments-opt-in" content="">
+    <link rel="amphtml" href="@((this.Request.Url.ToString().Contains("?") ? this.Request.Url.ToString() + "&" : "?")+"amp=true")">
+    <link rel="alternate" href="https://adwokat-szkudlarek.pl/" hreflang="pl" />
+    <link rel="publisher" href="https://plus.google.com/u/0/106755742094223867559">
+    
+    <script type="application/ld+json">
+        {
+            "@@context": "http://schema.org",
+            "@@type": "WebSite",
+            "name": "@home.Sitename",
+            "alternateName": "@home.Author",
+            "url": "@this.Request.Url.Authority"
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+        "@@context": "http://schema.org",
+        "@@type": "Organization",
+        "url": "@this.Request.Url.Authority",
+        "logo": "@(home.SiteLogo != null ? home.SiteLogo.Url : "")",
+        "contactPoint": [{
+                    "@@type": "ContactPoint",
+                    "telephone": "@home.PhoneNumber",
+                    "contactType": "sales contact point",
+                    "contactOption": "@home.ContactOptions",
+                    "areaServed": "@home.AreaServed",
+                    "availableLanguage": "@home.AvailableLanguage",
+                    "Url": "@home.ContactPageUrl"
+                }]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@@context": "http://schema.org",
+            "@@type": "WebPage",
+            "name": "@title",
+            "description": "@Model.Content.GetPropertyValue("SeoMetaDescription")",
+            "keywords": "@Model.Content.GetPropertyValue("Keywords")",
+            "url": "@this.Request.Url.ToString()",
+            "dateCreated": "@Model.Content.CreateDate",
+            "dateModified": "@Model.Content.UpdateDate",
+            "datePublished": "@(Model.Content.GetPropertyValue("PublishDate") != null ? Model.Content.GetPropertyValue("PublishDate").ToString(): "")",
+            "creator": "@home.Author",
+            "primaryImageOfPage": "@mainImageUrl",
+            "specialty":{
+                "@@type" : "Specialty",
+                "name": "@Model.Content.GetPropertyValue("SpecialtyName")",
+                "description": "@Model.Content.GetPropertyValue("SpecialtyDescription")"
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="@Url.Content("~/css/ampLoadCss.css")" />
 </head>
 
-<body class="frontpage theme-font-@font theme-color-@colorTheme">
-    <div class="mobile-nav">
-        <nav class="nav-bar">
+<body class="home amp-mode-mouse frontpage theme-font-@font theme-color-@colorTheme">
+ <p>@x1</p>
+    @if(!string.IsNullOrWhiteSpace(gtmCode))
+    {
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=@gtmCode"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    }
+    
             @Html.Partial("~/views/partials/navigation/topNavigation.cshtml")
-        </nav>
-    </div>
 
-    <header class="header">
-
-        <div class="logo">
-            @if (home.SiteLogo != null && !string.IsNullOrEmpty(home.SiteLogo.Url))
-            {
-                <div class="nav-link--home">
-                    <img class="logo-image" src="@home.SiteLogo.Url" alt="@home.Sitename">
-                </div>
-            }
-            else
-            {
-                <a class="nav-link nav-link--home nav-link--home__text logo-text" href="/">@home.Sitename</a>
-            }
-        </div>
-
-        <nav class="nav-bar top-nav">
-            @Html.Partial("~/Views/Partials/Navigation/TopNavigation.cshtml")
-        </nav>
-
-        <div class="mobile-nav-handler">
-            <div class="hamburger lines" id="toggle-nav">
-                <span></span>
-            </div>
-        </div>
-
-    </header>
 
     <main>
         @RenderBody()
     </main>
-
     <footer class="section--themed">
         <div class="container">
             <div class="row">
@@ -68,6 +147,7 @@
                     @home.FooterAddress
                 </div>
             </div>
+            @Html.Partial("~/views/partials/navigation/breadcrumbs.cshtml")
         </div>
     </footer>
 
@@ -77,5 +157,6 @@
     <script src="@Url.Content("~/scripts/umbraco-starterkit-app.js")"></script>
 
 </body>
+
 
 </html>

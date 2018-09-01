@@ -1,0 +1,31 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Umbraco.Web;
+
+@{
+    var selection = CurrentPage.Ancestors();
+    var pageLevel = 0;
+    if (selection.Any())
+    {
+        <div>
+            <ul class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">       
+                @foreach (var page in selection.OrderBy("Level"))
+                {
+                    pageLevel = page.Level;
+                        <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            <a itemprop="item" href="@this.Request.Url.Scheme://@this.Request.Url.Authority@page.Url">
+                                <span itemprop="name">@page.Name</span>
+                            </a>
+                            <meta itemprop="position" content="@page.Level" />
+                        </li>
+                }
+                <!-- And add the current page -->
+                <li class="breadcrumb-item active" itemprop="itemListElement" itemscope
+                    itemtype="http://schema.org/ListItem">
+                        <span itemprop="name">@CurrentPage.Name</span>
+                        <meta itemprop="position" content="@(pageLevel+1)" />
+                        <meta itemprop="item" content="@this.Request.Url" />
+                </li>
+            </ul>
+        </div>
+    }
+}
