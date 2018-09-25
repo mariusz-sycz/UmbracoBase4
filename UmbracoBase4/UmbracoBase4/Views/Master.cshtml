@@ -3,7 +3,7 @@
     Layout = null;
     //Check AMP Page
     var isAMP = this.Request.Url.ToString().Contains("amp=true");
-    
+
     // Get basic design settings from the homepage
     var home = (Home)Model.Content.Site();
     var colorTheme = Umbraco.GetPreValueAsString(home.ColorTheme);
@@ -120,8 +120,14 @@
             }
         }
     </script>
-
-    <link rel="stylesheet" href="@Url.Content("~/css/ampLoadCss.css")" />
+    @if(isAMP)
+    {
+        @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/ampLoadCss.css")).Replace("attr(data-image)", home.SiteLogo.Url))
+    }
+    else
+    {
+        <link rel="stylesheet" href="@Url.Content("~/css/ampLoadCss.css")" />
+    }
 </head>
 
 <body class="home amp-mode-mouse frontpage theme-font-@font theme-color-@colorTheme">
@@ -155,7 +161,14 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
     <script src="@Url.Content("~/scripts/umbraco-starterkit-app.js")"></script>
-
+    @if(!isAMP)
+    {
+        <style>
+            .header .left-nav .header-title {
+                background: url(@mainImageUrl) no-repeat center left/100%;
+            }
+        </style>
+    }
 </body>
 
 

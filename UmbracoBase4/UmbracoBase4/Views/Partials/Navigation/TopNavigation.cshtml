@@ -2,6 +2,7 @@
 @using Umbraco.Web;
 @{ 
     var site = Model.Content.Site();
+    var mainImageUrl = (Model.Content.GetPropertyValue("SiteLogo") as Image) != null ?((Image)Model.Content.GetPropertyValue("SiteLogo")).Url : string.Empty;
     var selection = site.Children.Where(x => x.IsVisible());
 }
 @*
@@ -110,7 +111,7 @@
     <div class="container">
         <div class="nav-container">
             <div class="left-nav alt"itemscope itemtype="http://schema.org/SiteNavigationElement">
-                <a href="@this.Request.Url.Scheme://@this.Request.Url.Authority" class="tab"><span>@((site as Home).Sitename)</span></a>
+                <a href="@this.Request.Url.Scheme://@this.Request.Url.Authority" class="tab logoimage header-title"></a>
                 <div class="tabs">
                     <div class="tab">
                         <a class="menu-item @Html.Raw(Model.Content.Id == site.Id ? "active" : "")" href="@site.Url">@site.Name</a>

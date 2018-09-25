@@ -331,7 +331,7 @@ p:last-child {
 }
 
 .header .left-nav .header-title {
-    background: url(https://adwokat-szkudlarek.pl/Images/Logo-kancelaria-adwokacka-jaroslaw-szkudlarek-min.png) no-repeat center left/100%;
+    background: url(attr(data-image) no-repeat center left/100%;
     color: #0379c4;
     margin: 0;
     padding: 40px 40px 40px 60px;
