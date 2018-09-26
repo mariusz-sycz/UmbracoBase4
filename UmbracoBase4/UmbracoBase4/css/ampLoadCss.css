@@ -1,3 +1,21 @@
+:root {
+    --ll: #ffffff;
+    --lm: #fefefe;
+    --ld: #eeeeee;
+    --lct: #000000;
+    --pl: #4CAF50;
+    --pm: #388E3C;
+    --pd: #1b5e20;
+    --pct: #ffffff;
+    --sl: #ffeead;
+    --sm: #ffcc5c;
+    --sd: #ffeead;
+    --sct: #ffffff;
+    --el: #ffeead;
+    --em: #ffcc5c;
+    --ed: #ffeead;
+    --ect: #ffffff;
+}
 img {
     width: 100%;
     vertical-align: middle
@@ -27,7 +45,10 @@ body,.card {
         line-height: 26px
     }
 }
-
+html,body {
+    background-color: var(--lm);
+    color: var(--lct);
+}
 .small,.header .tab .list-container>ul li a,.searchbar input {
     color: #333;
     font-size: 16px;
@@ -138,7 +159,6 @@ html,body {
 }
 
 body {
-    color: #000;
     font-family: 'Titillium Web','Times New Roman',Times,serif;
     padding-top: 80px
 }
@@ -331,7 +351,7 @@ p:last-child {
 }
 
 .header .left-nav .header-title {
-    background: url(attr(data-image) no-repeat center left/100%;
+    background: url(attr(data-image)) no-repeat center left/100%;
     color: #0379c4;
     margin: 0;
     padding: 40px 40px 40px 60px;
@@ -1157,8 +1177,6 @@ html {
 
 body {
     font-size: 16px;
-    color: #333;
-    background-color: #fff
 }
 
 input,button,select,textarea {
@@ -2369,10 +2387,6 @@ footer {
 
 .navbar-toggle {
     padding-left: 15px
-}
-
-html,body {
-    background-color: #fafafa
 }
 
 .page-header {

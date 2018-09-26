@@ -122,7 +122,9 @@
     </script>
     @if(isAMP)
     {
-        @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/ampLoadCss.css")).Replace("attr(data-image)", home.SiteLogo.Url))
+        <style>
+            @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/ampLoadCss.css")).Replace("attr(data-image)", home.SiteLogo.Url))
+        </style>
     }
     else
     {
@@ -165,7 +167,7 @@
     {
         <style>
             .header .left-nav .header-title {
-                background: url(@mainImageUrl) no-repeat center left/100%;
+                background: url(@home.SiteLogo.Url) no-repeat center left/100%;
             }
         </style>
     }
