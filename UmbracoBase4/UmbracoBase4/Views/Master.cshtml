@@ -6,10 +6,9 @@
 
     // Get basic design settings from the homepage
     var home = (Home)Model.Content.Site();
-    var colorTheme = Umbraco.GetPreValueAsString(home.ColorTheme);
-    var font = Umbraco.GetPreValueAsString(home.Font);
     var gtmCode = home.GoogleTagManagerCode;
     var gaCode = home.GoogleAnaliticsCode;
+    var customFont = home.CustomFont;
     var title = Model.Content.Name + " - "+ home.Sitename;
     var mainImageUrl = (Model.Content.GetPropertyValue("MainImage") as Image) != null ?((Image)Model.Content.GetPropertyValue("MainImage")).Url : string.Empty;
     var mainImageAlt = Model.Content.GetPropertyValue("MainImageAlt");
@@ -124,15 +123,18 @@
     {
         <style>
             @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/ampLoadCss.css")).Replace("attr(data-image)", home.SiteLogo.Url))
-        </style>
+            </style>
     }
     else
     {
         <link rel="stylesheet" href="@Url.Content("~/css/ampLoadCss.css")" />
     }
+    <style>
+        @Html.Raw(customFont);
+    </style>
 </head>
 
-<body class="home amp-mode-mouse frontpage theme-font-@font theme-color-@colorTheme">
+<body class="home amp-mode-mouse frontpage">
  <p>@x1</p>
     @if(!string.IsNullOrWhiteSpace(gtmCode))
     {
@@ -145,9 +147,14 @@
             @Html.Partial("~/views/partials/navigation/topNavigation.cshtml")
 
 
-    <main>
-        @RenderBody()
-    </main>
+<div class="wrap">
+    <div class="content">
+        <div class="container xl">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
     <footer class="section--themed">
         <div class="container">
             <div class="row">

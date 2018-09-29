@@ -418,6 +418,7 @@
     <Content Include="App_Data\NuGetBackup\20180901-183318\Web.config" />
     <Content Include="App_Data\packages\installed\installedPackages.config" />
     <Content Include="App_Data\umbraco.config" />
+    <Content Include="App_Plugins\GridEditors\package.manifest" />
     <None Include="packages.config" />
     <Content Include="UmbracoBase4\App_Plugins\StarterKit\lessons.service.js" />
     <Content Include="UmbracoBase4\App_Plugins\StarterKit\StarterKitHelp.Controller.js" />
@@ -2083,6 +2084,7 @@
     <Folder Include="App_Data\NuGetBackup\20180901-183318\Umbraco\" />
     <Folder Include="App_Data\NuGetBackup\20180901-183318\Umbraco_Client\" />
     <Folder Include="App_Data\packages\created\" />
+    <Folder Include="images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
