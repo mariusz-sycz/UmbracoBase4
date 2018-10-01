@@ -21,17 +21,18 @@
 <!doctype html>
 <html>
 <head>
-    @if(!string.IsNullOrWhiteSpace(gtmCode))
+    @if (!string.IsNullOrWhiteSpace(gtmCode))
     {
         <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        <script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','@gtmCode');</script>
         <!-- End Google Tag Manager -->
     }
-    @if(!string.IsNullOrWhiteSpace(gaCode))
+    @if (!string.IsNullOrWhiteSpace(gaCode))
     {
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=@gaCode"></script>
@@ -52,13 +53,13 @@
     <meta name="description" content="@Model.Content.GetPropertyValue("SeoMetaDescription")">
     <meta name="author" content="@home.Author">
     <meta name="keywords" content="@Model.Content.GetPropertyValue("Keywords")">
-    
+
     <meta property="og:url" content="@this.Request.Url" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="@title" />
     <meta property="og:description" content="@Model.Content.GetPropertyValue("SeoMetaDescription")" />
     <meta property="og:image" content="@mainImageUrl" />
-    
+
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="J_Szkudlarek">
     <meta name="twitter:title" content="@title">
@@ -67,19 +68,19 @@
     <meta name="twitter:image:alt" content="@mainImageAlt">
 
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-    
+
     <meta name="amp-experiments-opt-in" content="">
     <link rel="amphtml" href="@((this.Request.Url.ToString().Contains("?") ? this.Request.Url.ToString() + "&" : "?")+"amp=true")">
     <link rel="alternate" href="https://adwokat-szkudlarek.pl/" hreflang="pl" />
     <link rel="publisher" href="https://plus.google.com/u/0/106755742094223867559">
-    
+
     <script type="application/ld+json">
         {
-            "@@context": "http://schema.org",
-            "@@type": "WebSite",
-            "name": "@home.Sitename",
-            "alternateName": "@home.Author",
-            "url": "@this.Request.Url.Authority"
+        "@@context": "http://schema.org",
+        "@@type": "WebSite",
+        "name": "@home.Sitename",
+        "alternateName": "@home.Author",
+        "url": "@this.Request.Url.Authority"
         }
     </script>
     <script type="application/ld+json">
@@ -89,45 +90,47 @@
         "url": "@this.Request.Url.Authority",
         "logo": "@(home.SiteLogo != null ? home.SiteLogo.Url : "")",
         "contactPoint": [{
-                    "@@type": "ContactPoint",
-                    "telephone": "@home.PhoneNumber",
-                    "contactType": "sales contact point",
-                    "contactOption": "@home.ContactOptions",
-                    "areaServed": "@home.AreaServed",
-                    "availableLanguage": "@home.AvailableLanguage",
-                    "Url": "@home.ContactPageUrl"
-                }]
+        "@@type": "ContactPoint",
+        "telephone": "@home.PhoneNumber",
+        "contactType": "sales contact point",
+        "contactOption": "@home.ContactOptions",
+        "areaServed": "@home.AreaServed",
+        "availableLanguage": "@home.AvailableLanguage",
+        "Url": "@home.ContactPageUrl"
+        }]
         }
     </script>
     <script type="application/ld+json">
         {
-            "@@context": "http://schema.org",
-            "@@type": "WebPage",
-            "name": "@title",
-            "description": "@Model.Content.GetPropertyValue("SeoMetaDescription")",
-            "keywords": "@Model.Content.GetPropertyValue("Keywords")",
-            "url": "@this.Request.Url.ToString()",
-            "dateCreated": "@Model.Content.CreateDate",
-            "dateModified": "@Model.Content.UpdateDate",
-            "datePublished": "@(Model.Content.GetPropertyValue("PublishDate") != null ? Model.Content.GetPropertyValue("PublishDate").ToString(): "")",
-            "creator": "@home.Author",
-            "primaryImageOfPage": "@mainImageUrl",
-            "specialty":{
-                "@@type" : "Specialty",
-                "name": "@Model.Content.GetPropertyValue("SpecialtyName")",
-                "description": "@Model.Content.GetPropertyValue("SpecialtyDescription")"
-            }
+        "@@context": "http://schema.org",
+        "@@type": "WebPage",
+        "name": "@title",
+        "description": "@Model.Content.GetPropertyValue("SeoMetaDescription")",
+        "keywords": "@Model.Content.GetPropertyValue("Keywords")",
+        "url": "@this.Request.Url.ToString()",
+        "dateCreated": "@Model.Content.CreateDate",
+        "dateModified": "@Model.Content.UpdateDate",
+        "datePublished": "@(Model.Content.GetPropertyValue("PublishDate") != null ? Model.Content.GetPropertyValue("PublishDate").ToString() : "")",
+        "creator": "@home.Author",
+        "primaryImageOfPage": "@mainImageUrl",
+        "specialty":{
+        "@@type" : "Specialty",
+        "name": "@Model.Content.GetPropertyValue("SpecialtyName")",
+        "description": "@Model.Content.GetPropertyValue("SpecialtyDescription")"
+        }
         }
     </script>
-    @if(isAMP)
+    @if (isAMP)
     {
         <style>
-            @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/ampLoadCss.css")).Replace("attr(data-image)", home.SiteLogo.Url))
-            </style>
+            @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/layout.css")).Replace("attr(data-image)", home.SiteLogo.Url))
+            @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/content.css")).Replace("attr(data-image)", home.SiteLogo.Url))
+        </style>
     }
     else
     {
-        <link rel="stylesheet" href="@Url.Content("~/css/ampLoadCss.css")" />
+        <link rel="stylesheet" href="@Url.Content("~/css/layout.css")" />
+        <link rel="stylesheet" href="@Url.Content("~/css/content.css")" />
     }
     <style>
         @Html.Raw(customFont);
@@ -135,7 +138,6 @@
 </head>
 
 <body class="home amp-mode-mouse frontpage">
- <p>@x1</p>
     @if(!string.IsNullOrWhiteSpace(gtmCode))
     {
         <!-- Google Tag Manager (noscript) -->
@@ -144,7 +146,7 @@
         <!-- End Google Tag Manager (noscript) -->
     }
     
-            @Html.Partial("~/views/partials/navigation/topNavigation.cshtml")
+            @Html.Partial("~/views/partials/navigation/topNavigationwithsubnavigation.cshtml")
 
 
 <div class="wrap">

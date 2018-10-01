@@ -180,7 +180,7 @@ h1,h2,h3,h4,h5 {
     font-weight: 300;
     margin: .25em 0
 }
-
+/**umb_name:Heading1*/
 h1,h2.h1 {
     font-size: 50px;
     font-weight: 100;
@@ -943,10 +943,6 @@ a:active,a:hover {
 
 abbr[title] {
     border-bottom: 1px dotted
-}
-
-b,strong {
-    font-weight: 700
 }
 
 dfn {
@@ -2510,10 +2506,6 @@ ul.nav.navbar-nav {
     font-weight: 700
 }
 
-strong {
-    font-weight: inherit
-}
-
 .separate {
     border-top: 1px solid #005600;
     width: 100%
@@ -2754,3 +2746,5 @@ amp-sidebar[side] {
     font-size: 14px;
     height: 60px;
 }
+
+

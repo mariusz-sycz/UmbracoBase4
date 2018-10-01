@@ -1,0 +1,7 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.RedirectPage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "Master.cshtml";
+    Response.RedirectPermanent("http://myumbraco.pl");
+}
+<p>@Model.Content.GetPropertyValue("RedirectTo")</p>
