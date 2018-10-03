@@ -39,8 +39,10 @@
 @helper renderRow(dynamic row){
     <div @RenderElementAttributes(row)>
         <div class="row clearfix">
-            @foreach ( var area in row.areas ) {
-            <div class="col-md-@area.grid column">
+            @foreach ( var area in row.areas )
+            {
+                var isSm = (row as Newtonsoft.Json.Linq.JObject).GetValue("name").ToString().Contains("SM");
+            <div class="col-@(isSm ? "sm": "md")-@area.grid column">
                 <div @RenderElementAttributes(area)>
                     @foreach (var control in area.controls) {
                         if (control !=null && control.editor != null && control.editor.view != null ) {
