@@ -1,0 +1,21 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    var mapUrl = Model.Content.GetPropertyValue("GoogleMapUrl") as string;
+    var isAMP = this.Request.Url.ToString().Contains("amp=true");
+    if (!string.IsNullOrWhiteSpace(mapUrl))
+    {
+        if (isAMP)
+        {
+
+            <amp-iframe width="600" height="300"
+                        layout="responsive"
+                        sandbox="allow-scripts allow-same-origin allow-popups"
+                        frameborder="0"
+                        src="@mapUrl"></amp-iframe>
+        }
+        else
+        {
+            <iframe src="@mapUrl" width="600" height="450" frameborder="0" style="border: 0; width: 100%" allowfullscreen></iframe>
+        }
+    }
+}

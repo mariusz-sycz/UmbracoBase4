@@ -1,0 +1,12 @@
+﻿@model UmbracoBase4.Models.Amp.Image
+
+@{
+    if (Model.IsAmp)
+    {
+        <amp-img src="@Url.Content(Model.Src)" alt="@Model.Alt" height="@Model.Height" width="@Model.Width" @(Model.Static ? "":"layout=responsive")></amp-img>
+    }
+    else
+    {
+        <img src="@Url.Content(Model.Src)" alt="@Model.Alt"/>
+    }
+}

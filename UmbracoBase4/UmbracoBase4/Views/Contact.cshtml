@@ -1,34 +1,32 @@
 ﻿@inherits UmbracoTemplatePage<Contact>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
-@using Terratype;
 @{
     Layout = "Master.cshtml";
 }
-@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
 
 <section class="section">
-    <div class="container">
-
-        <div class="row">
-
-            <div class="col-md-6">
-                <h2>@Model.Content.MapHeader</h2>
-                @Html.Terratype(Model.Content.Map)
-            </div>
-
-            <div class="col-md-6">
-                <h2>@Model.Content.ContactFormHeader</h2>
-                @Model.Content.ContactIntro
-                <p class="compat-msg">
-        <em>Umbraco Forms</em> is required to render this form.It's a breeze to install, all you have to do is
-        go to the<em> Umbraco Forms</em> section in the back office and click Install, that's it! :) 
-        <br /><br />
-        <a href="/umbraco/#/forms" class="button button--border--solid">Go to Back Office and install Forms</a>
-        <!-- When Umbraco Forms is installed, uncomment this line -->
-        @* @Umbraco.RenderMacro("renderUmbracoForm", new {FormGuid=Model.Content.ContactForm.ToString()}) *@
-        </p>
-            </div>
-
-        </div>
-    </div>
+    @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
 </section>
+
+<div class="col-xs-12 col-md-12">
+    <h2 class="typKontaktu">@Model.Content.ContactFormHeader</h2>
+    <p class="italic">@Model.Content.ContactIntro</p>
+    <div class="formularzKontaktowy">
+        @{ Html.RenderPartial("Amp/FormularzKontaktowy");}
+    </div>
+</div>
+<div class="col-xs-12 max-height-400">
+    @{ Html.RenderPartial("Amp/GoogleMaps");}
+</div>
+
+
+
+@*<style type="text/css">
+        .googlemap {
+            max-height: 600px;
+            float: left;
+            width:100%}
+        }
+    </style>*@
+
+@*<link rel="stylesheet" href="@Url.Content("~/Styles/KontakILokalizacja-cleaned.css")" async>*@

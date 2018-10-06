@@ -1,6 +1,7 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
 @using Umbraco.Web;
 @{ 
+    var isAMP = this.Request.Url.ToString().Contains("amp=true");
     var site = Model.Content.Site();
     var mainImageUrl = (Model.Content.GetPropertyValue("SiteLogo") as Image) != null ?((Image)Model.Content.GetPropertyValue("SiteLogo")).Url : string.Empty;
     var selection = site.Children.Where(x => x.IsVisible());
@@ -15,7 +16,7 @@
 *@
     <amp-sidebar id='sidebar' side='right' layout='nodisplay'>
     <form class="menu-layer primary" action="/" target="_top">
-        <button type="reset" class="close-button" id="menu-button" on='tap:sidebar.toggle' onclick=Close();></button>
+        <button type="reset" class="close-button" id="menu-button" on='tap:sidebar.toggle'  @(isAMP ? "":"onclick=Close();")></button>
         <div class="items">
             <a class="menu-item item-layer-1 @Html.Raw(Model.Content.Id == site.Id ? "active" : "")" href="@site.Url">@site.Name</a>
             @foreach (var item in selection)
@@ -130,7 +131,7 @@
                     <input name="as_sitesearch" type="hidden" value="adwokat-szkudlarek.pl">
                     <button name="search" type="submit"></button>
                 </form>
-                <button class="tab hamburger" id="menu-button" on='tap:sidebar.toggle'onclick=Open();>Menu</button>
+                <button class="tab hamburger" id="menu-button" on='tap:sidebar.toggle'  @(isAMP ? "":"onclick=Open();")>Menu</button>
             </div>
         </div>
     </div>
