@@ -28,7 +28,34 @@
                                 <a class="menu-item item-layer-2  @(item.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@item.Url">@item.Name</a>
                                 @foreach (var subItem in item.Children)
                                 {
-                                    <a class="menu-item item-layer-2  @(subItem.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@subItem.Url">@subItem.Name</a>
+                                    if (!subItem.Children.Any())
+                                    {
+                                        <a class="menu-item item-layer-2  @(subItem.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@subItem.Url">@subItem.Name</a>
+                                    }
+                                    else
+                                    {
+                                        <label class="menu-item item-layer-2 has-sub-level @(item.IsAncestorOrSelf(Model.Content) ? "active" : null)">
+                                            <input type="checkbox">
+                                            @subItem.Name
+                                            <div class="submenu menu-layer tertiary">
+                                                <div class="return-button">Back</div>
+                                                <button type="reset" class="close-button" id="menu-button" on='tap:sidebar.toggle'></button>
+                                                <div class="items">
+                                                    @foreach (var subItem2 in subItem.Children)
+                                                    {
+                                                        if (!subItem2.Children.Any())
+                                                        {
+                                                            <a class="menu-item item-layer-3  @(subItem2.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@subItem2.Url">@subItem2.Name</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            //TODO llayer 4
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </label>
+                                    }
                                 }
                             </div>
                         </div>
@@ -124,9 +151,27 @@
                                     <ul>
                                         @foreach (var subItem in item.Children())
                                         {
-                                            <li>
-                                                <a class=" @(subItem.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@subItem.Url" itemprop="url"><span itemprop="name">@subItem.Name</span></a>
-                                            </li>
+
+                                            if (subItem.Children.Any())
+                                            {
+                                                <li class="has-sublist">
+                                                    <a href="@subItem.Url">@subItem.Name</a>
+                                                    <ul class="sublist">
+                                                        @foreach (var subItem2 in subItem.Children())
+                                                        {
+                                                            <li>
+                                                                <a href="@subItem2.Url" itemprop="url"><span itemprop="name">@subItem2.Name</span></a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                </li>
+                                            }
+                                            else
+                                            {
+                                                <li>
+                                                    <a class=" @(subItem.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@subItem.Url" itemprop="url"><span itemprop="name">@subItem.Name</span></a>
+                                                </li>
+                                            }
                                         }
                                     </ul>
                                 </div>

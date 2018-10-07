@@ -370,6 +370,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\AMP\fb_icon.png" />
     <Content Include="images\AMP\search.svg" />
+    <Content Include="images\AMP\sprite.svg" />
     <Content Include="images\AMP\t_icon.png" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />

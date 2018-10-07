@@ -9,7 +9,7 @@
     var gtmCode = home.GoogleTagManagerCode;
     var gaCode = home.GoogleAnaliticsCode;
     var customFont = home.CustomFont;
-    var title = Model.Content.Name + " - " + home.Sitename;
+    var title = Model.Content.GetPropertyValue("PageTitle");
     var mainImageUrl = (Model.Content.GetPropertyValue("MainImage") as Image) != null ? ((Image)Model.Content.GetPropertyValue("MainImage")).Url : string.Empty;
     var mainImageAlt = Model.Content.GetPropertyValue("MainImageAlt");
     var x1 = Model.Content != null ? Model.Content.GetType().Name + ":" : "";
