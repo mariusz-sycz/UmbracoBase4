@@ -368,7 +368,9 @@
     <Content Include="css\rte.css" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="images\AMP\fb_icon.png" />
     <Content Include="images\AMP\search.svg" />
+    <Content Include="images\AMP\t_icon.png" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
     <Content Include="config\trees.config" />
@@ -2065,6 +2067,9 @@
     <None Include="Properties\PublishProfiles\umbraco.fcore.hostingasp.pl - Web Deploy.pubxml" />
     <Content Include="Views\Partials\Navigation\TopNavigationWithSubnavigation.cshtml" />
     <Content Include="Views\RedirectPage.cshtml" />
+    <Content Include="Views\Partials\Amp\Image.cshtml" />
+    <Content Include="Views\Partials\Amp\FormularzKontaktowy.cshtml" />
+    <Content Include="Views\Partials\Amp\GoogleMaps.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2077,6 +2082,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\publishDateSetter.cs" />
+    <Compile Include="App_Plugins\Form\FormController.cs" />
+    <Compile Include="App_Plugins\Form\FormData.cs" />
+    <Compile Include="Models\Amp\Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
