@@ -372,6 +372,10 @@
     <Content Include="images\AMP\search.svg" />
     <Content Include="images\AMP\sprite.svg" />
     <Content Include="images\AMP\t_icon.png" />
+    <Content Include="Media\1001\logo-kancelaria-adwokacka-jaroslaw-szkudlarek-min.png" />
+    <Content Include="Media\1002\adwokat-lodz-jaroslaw-szkudlarek-9363m.jpg" />
+    <Content Include="Media\1003\adwokat-lodz-jaroslaw-szkudlarek-9393.jpg" />
+    <Content Include="Media\1004\adwokat-lodz-jaroslaw-szkudlarek-9314m.jpg" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
     <Content Include="config\trees.config" />
@@ -1945,6 +1949,7 @@
     <Content Include="Umbraco\assets\less\shadow.less" />
     <Content Include="Umbraco\assets\less\slider.less" />
     <Content Include="Umbraco\Install\Views\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\test.adwokat-szkudlarek.pl - Web Deploy.pubxml" />
     <None Include="Umbraco\Install\Views\Web.config" />
     <None Include="Umbraco\Js\web.config" />
     <Content Include="Umbraco\lib\angular-dynamic-locale\tmhDynamicLocale.min.js.map" />
