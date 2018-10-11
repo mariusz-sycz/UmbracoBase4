@@ -2076,6 +2076,7 @@
     <Content Include="Views\Partials\Amp\Image.cshtml" />
     <Content Include="Views\Partials\Amp\FormularzKontaktowy.cshtml" />
     <Content Include="Views\Partials\Amp\GoogleMaps.cshtml" />
+    <Content Include="Views\ContentPageWithFiles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2084,7 +2085,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\publishDateSetter.cs" />
