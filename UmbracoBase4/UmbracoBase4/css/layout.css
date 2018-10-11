@@ -161,7 +161,7 @@ html,body {
 
 body {
     font-family: 'Titillium Web','Times New Roman',Times,serif;
-    padding-top: 80px
+    padding-top: 110px
 }
 
 @media only screen and (max-width: 992px) {
@@ -2603,7 +2603,7 @@ li.MenuItem.Referencje.ReferencjeRef a {
 .logo {
     text-align: center;
     width: 100%;
-    height: 120px
+    height: 110px
 }
 
 @media (max-width: 768px) {

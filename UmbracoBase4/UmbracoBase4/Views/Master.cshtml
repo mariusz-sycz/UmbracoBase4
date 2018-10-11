@@ -161,7 +161,7 @@
                 
                 @Html.Raw(customFont);
                 @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/layout.css")).Replace("attr(data-image)", home.SiteLogo.Url))
-            @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/content.css")).Replace("attr(data-image)", home.SiteLogo.Url))
+                @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/content.css")).Replace("attr(data-image)", home.SiteLogo.Url))
                 
             </style>
         }
