@@ -183,7 +183,7 @@
             <div class="right alt">
                 <form action="//www.google.com/search" method="get" class="searchbar" target="_top">
                     <input class="query" name="q" type="text">
-                    <input name="as_sitesearch" type="hidden" value="adwokat-szkudlarek.pl">
+                    <input name="as_sitesearch" type="hidden" value="@this.Request.Url.Host">
                     <button name="search" type="submit"></button>
                 </form>
                 <button class="tab hamburger" id="menu-button" on='tap:sidebar.toggle' @(isAMP ? "":"onclick=Open();")>Menu</button>

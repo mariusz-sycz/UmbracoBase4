@@ -75,7 +75,7 @@
         <meta property="og:image" content="@mainImageUrl"/>
 
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="J_Szkudlarek">
+        <meta name="twitter:site" content="@Model.Content.GetPropertyValue("TwitterName")">
         <meta name="twitter:title" content="@title">
         <meta name="twitter:description" content="@Model.Content.GetPropertyValue("SeoMetaDescription")">
         <meta name="twitter:image" content="@mainImageUrl">
@@ -92,8 +92,8 @@
         {
             <link rel="amphtml" href="@((this.Request.Url.ToString().Contains("?") ? this.Request.Url.ToString() + "&" : "?") + "amp=true")">
         }
-        <link rel="alternate" href="https://adwokat-szkudlarek.pl/" hreflang="pl"/>
-        <link rel="publisher" href="https://plus.google.com/u/0/106755742094223867559">
+        <link rel="alternate" href="https://@(this.Request.Url.Host)/" hreflang="pl"/>
+        <link rel="publisher" href="@Model.Content.GetPropertyValue("GoogleAccountUrl")">
 
         <script type="application/ld+json">
         {
