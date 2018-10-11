@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.ContentPageWithFiles>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+}
+<section class="section">
+    @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
+</section>
+@if (Model.Content.HasValue("files"))
+{    
+    foreach (var file in Model.Content.Files)
+    {
+        <a href="@file.Url" target="_blank">@file.UrlName</a> <br/>
+    }
+}
