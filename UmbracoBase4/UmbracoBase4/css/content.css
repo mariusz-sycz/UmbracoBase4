@@ -3,10 +3,10 @@ h1 {
     margin-top: 20px;
     margin-bottom: 10px;
     font-weight: 500;
-    color: #333;
+    color: #002601;
 }
 h2 {
-    color: #0a0;
+    color: #004c02;
     font-weight: 700;
     font-size: 22px;
 }
@@ -15,5 +15,5 @@ h2 {
 }
 .green,
 .green > a {
-	color: green;
+    color: #449302;
 }

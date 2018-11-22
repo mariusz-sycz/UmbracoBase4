@@ -161,7 +161,7 @@ html,body {
 
 body {
     font-family: 'Titillium Web','Times New Roman',Times,serif;
-    padding-top: 110px
+    padding-top: 80px
 }
 
 @media only screen and (max-width: 992px) {
@@ -351,14 +351,27 @@ p:last-child {
     margin-left: 0
 }
 
-.header .left-nav .header-title {
-    background: url(attr(data-image)) no-repeat center left/100%;
-    color: #0379c4;
-    margin: 0;
-    padding: 40px 40px 40px 60px;
-    text-transform: none;
-    white-space: nowrap;
-    width: 250px
+    .header .left-nav .header-title {
+        background: url(attr(data-image)) no-repeat center left/100%;
+        color: #0379c4;
+        text-transform: none;
+        white-space: nowrap;
+        width: 80px;
+        height: 70px;
+        float: left;
+    }
+.name {
+    width: 300px;
+    padding-top: 20px;
+    padding-left: 90px;
+    text-align: left;
+    color: #333;
+}
+
+.ll {
+    width: 100%;
+    color: #333;
+    text-decoration: none;
 }
 
 .header .left-nav .header-title::after,.header .left-nav .header-title::before {
@@ -379,7 +392,7 @@ p:last-child {
 
 .header .tabs {
     justify-content: center;
-    margin-left: 60px
+    color: #333;
 }
 
 .header .tab {
@@ -445,7 +458,7 @@ p:last-child {
 }
 
 .header .tab>a {
-    color: inherit;
+    color: #333;
     position: relative;
     top: 19px
 }
@@ -2403,7 +2416,7 @@ h1.transparent {
 }
 
 span.transparent {
-    color: #0a0;
+    color: #095741;
     font-weight: 700;
     font-size: 22px
 }
@@ -2591,6 +2604,9 @@ li.MenuItem.Referencje.ReferencjeRef a {
 .green2 {
     color: forestgreen
 }
+.logoPanel {
+    width: 100%;
+}
 
 .logo .img {
     background-image: url(/images/Adwokat-Lodz-Jaroslaw-Szkudlarek-Logo.png);
@@ -2603,7 +2619,7 @@ li.MenuItem.Referencje.ReferencjeRef a {
 .logo {
     text-align: center;
     width: 100%;
-    height: 110px
+    height: 70px;
 }
 
 @media (max-width: 768px) {

@@ -377,6 +377,7 @@
     <Content Include="images\AMP\search.svg" />
     <Content Include="images\AMP\sprite.svg" />
     <Content Include="images\AMP\t_icon.png" />
+    <Content Include="images\Logo\MM.png" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
     <Content Include="config\trees.config" />
