@@ -469,8 +469,6 @@
     <Content Include="UmbracoBase4\bin\Terratype.dll" />
     <Content Include="UmbracoBase4\bin\Terratype.GoogleMapsV3.dll" />
     <Content Include="UmbracoBase4\bin\Umbraco.SampleSite.dll" />
-    <Content Include="UmbracoBase4\css\ampLoadCss.css" />
-    <Content Include="UmbracoBase4\css\umbraco-starterkit-style.css" />
     <Content Include="UmbracoBase4\Media\1001\4730684907_8a7f8759cb_b.jpg" />
     <Content Include="UmbracoBase4\Media\1002\18095416144_44a566a5f4_h.jpg" />
     <Content Include="UmbracoBase4\Media\1003\18531852339_981b067419_h.jpg" />
@@ -1951,6 +1949,8 @@
     <Content Include="Umbraco\assets\less\shadow.less" />
     <Content Include="Umbraco\assets\less\slider.less" />
     <Content Include="Umbraco\Install\Views\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\adwokat-migus.pl - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Umbraco\Install\Views\Web.config" />
     <None Include="Umbraco\Js\web.config" />
     <Content Include="Umbraco\lib\angular-dynamic-locale\tmhDynamicLocale.min.js.map" />
@@ -2071,7 +2071,6 @@
     <Content Include="Views\Partials\Navigation\SubNavigation.cshtml" />
     <Content Include="Views\Partials\Navigation\TopNavigation.cshtml" />
     <Content Include="Views\Partials\SectionHeader.cshtml" />
-    <None Include="Properties\PublishProfiles\umbraco.fcore.hostingasp.pl - Web Deploy.pubxml" />
     <Content Include="Views\Partials\Navigation\TopNavigationWithSubnavigation.cshtml" />
     <Content Include="Views\RedirectPage.cshtml" />
     <Content Include="Views\Partials\Amp\Image.cshtml" />
@@ -2106,6 +2105,7 @@
     <Folder Include="App_Data\NuGetBackup\20180901-183318\Umbraco\" />
     <Folder Include="App_Data\NuGetBackup\20180901-183318\Umbraco_Client\" />
     <Folder Include="App_Data\packages\created\" />
+    <Folder Include="UmbracoBase4\css\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
