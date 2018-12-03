@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = null;
+    Response.AddHeader("Content-Type", "text/xml");
+    IPublishedContent homePage = Model.Content.AncestorOrSelf("home");
+    const string DATE_TIME_FORMAT = "yyyy-MM-ddTHH:mm:sszzz";
+}
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" 
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url><loc>@homePage.UrlWithDomain()</loc><priority>1.0</priority><lastmod>@homePage.UpdateDate.ToString(DATE_TIME_FORMAT)</lastmod></url>
+@RenderChildPages(homePage.Children, DATE_TIME_FORMAT)
+</urlset>
+                
+@helper RenderChildPages(IEnumerable<IPublishedContent> pages, string dateTimeFormat)
+{
+    if (pages.Any())
+    {
+        foreach (IPublishedContent item in pages.Where(x => x.IsVisible()))
+        {
+            if (!(item.HasValue("excludeFromSitemap") && (bool)item.GetPropertyValue("excludeFromSitemap")))
+            {
+<url><loc>@item.UrlWithDomain()</loc><lastmod>@item.UpdateDate.ToString(dateTimeFormat)</lastmod></url>
+                if (item.Children.Where(x => x.IsVisible()).Any())
+                {                        
+                    @RenderChildPages(item.Children, dateTimeFormat)
+                }
+            }
+        }
+    }
+}
+
