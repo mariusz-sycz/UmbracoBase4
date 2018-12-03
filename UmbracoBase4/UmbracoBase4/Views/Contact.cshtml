@@ -8,13 +8,13 @@
     @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
 </section>
 
-<div class="col-xs-12 col-md-12">
+@*<div class="col-xs-12 col-md-12">
     <h2 class="typKontaktu">@Model.Content.ContactFormHeader</h2>
     <p class="italic">@Model.Content.ContactIntro</p>
     <div class="formularzKontaktowy">
         @{ Html.RenderPartial("Amp/FormularzKontaktowy");}
     </div>
-</div>
+</div>*@
 <div class="col-xs-12 max-height-400">
     @{ Html.RenderPartial("Amp/GoogleMaps");}
 </div>
