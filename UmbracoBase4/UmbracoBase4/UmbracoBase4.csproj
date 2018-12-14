@@ -373,6 +373,7 @@
     <Content Include="images\AMP\fb_icon.png" />
     <Content Include="images\AMP\hamburger.svg" />
     <Content Include="images\AMP\ic_open_in_new_black.svg" />
+    <Content Include="images\AMP\linkedin.png" />
     <Content Include="images\AMP\return.svg" />
     <Content Include="images\AMP\search.svg" />
     <Content Include="images\AMP\sprite.svg" />
