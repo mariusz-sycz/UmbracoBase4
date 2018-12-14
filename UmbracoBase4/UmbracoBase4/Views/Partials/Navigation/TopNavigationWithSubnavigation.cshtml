@@ -8,7 +8,7 @@
 }
 <amp-sidebar id='sidebar' side='right' layout='nodisplay'>
     <form class="menu-layer primary" action="/" target="_top">
-        <button type="reset" class="close-button" id="menu-button" on='tap:sidebar.toggle' @(isAMP ? "" :  "onclick=Close();")></button>
+        <button type="reset" class="close-button" id="menu-button" on='tap:sidebar.toggle' @(isAMP ? "" :  "onclick=Close();") aria-label="Close Mobile Menu"></button>
         <div class="items">
             @foreach (var item in selection)
             {
@@ -23,7 +23,7 @@
                         @item.Name
                         <div class="submenu menu-layer secondary">
                             <div class="return-button">Back</div>
-                            <button type="reset" class="close-button" id="menu-button" on='tap:sidebar.toggle'></button>
+                            <button type="reset" class="close-button" id="menu-button" on='tap:sidebar.toggle' aria-label="Close Mobile Menu"></button>
                             <div class="items">
                                 <a class="menu-item item-layer-2  @(item.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@item.Url">@item.Name</a>
                                 @foreach (var subItem in item.Children)
@@ -39,7 +39,7 @@
                                             @subItem.Name
                                             <div class="submenu menu-layer tertiary">
                                                 <div class="return-button">Back</div>
-                                                <button type="reset" class="close-button" id="menu-button" on='tap:sidebar.toggle'></button>
+                                                <button type="reset" class="close-button" id="menu-button2" on='tap:sidebar.toggle'></button>
                                                 <div class="items">
                                                     @foreach (var subItem2 in subItem.Children)
                                                     {
@@ -191,7 +191,7 @@
                     <input name="as_sitesearch" type="hidden" value="@this.Request.Url.Host">
                     <button name="search" type="submit"></button>
                 </form>
-                <button class="tab hamburger" id="menu-button" on='tap:sidebar.toggle' @(isAMP ? "":"onclick=Open();")>Menu</button>
+                <button class="tab hamburger" id="menu-button" on='tap:sidebar.toggle' @(isAMP ? "":"onclick=Open();") >Menu</button>
             </div>
         </div>
     </div>
