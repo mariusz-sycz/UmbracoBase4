@@ -214,19 +214,25 @@
                 @if (!string.IsNullOrWhiteSpace(home.FacebookUrl))
                 {
                     <a class="facebookLink" href="@home.FacebookUrl" title="Facebook">
-                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() {IsAmp = isAMP, Src = "~/images/amp/fb_icon.png", Alt = "Facebook", Width = 50, Height = 50, Static = true})
+                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "~/images/amp/fb_icon.png", Alt = "Facebook", Width = 50, Height = 50, Static = true })
                     </a>
                 }
                 @if (!string.IsNullOrWhiteSpace(home.GoogleAccountUrl))
                 {
                     <a class="googlePlus" href="@home.GoogleAccountUrl" rel="publisher" target="_top">
-                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() {IsAmp = isAMP, Src = "//ssl.gstatic.com/images/icons/gplus-32.png", Alt = "Google+", Width = 50, Height = 50, Static = true})
+                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "//ssl.gstatic.com/images/icons/gplus-32.png", Alt = "Google+", Width = 50, Height = 50, Static = true })
                     </a>
                 }
                 @if (!string.IsNullOrWhiteSpace(home.TwitterUrl))
                 {
                     <a href="@home.TwitterUrl" class="twiter">
-                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() {IsAmp = isAMP, Src = "~/Images/amp/t_icon.png", Alt = "Twiter", Width = 50, Height = 50, Static = true})
+                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "~/Images/amp/t_icon.png", Alt = "Twiter", Width = 50, Height = 50, Static = true })
+                    </a>
+                }
+                @if (!string.IsNullOrWhiteSpace(home.LinkedInUrl))
+                {
+                    <a href="@home.LinkedInUrl" class="linkedin">
+                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "~/Images/amp/linkedin.png", Alt = "LinkedIn", Width = 50, Height = 50, Static = true })
                     </a>
                 }
             </div>
@@ -235,11 +241,14 @@
 
     @if (!isAMP)
     {
-        <style>
-            .header .left-nav .header-title {
-                background: url(@home.SiteLogo.Url) no-repeat center left/100%;
-            }
-        </style>
+        if (home != null && home.SiteLogo != null)
+        {
+            <style>
+                .header .left-nav .header-title {
+                    background: url(@home.SiteLogo.Url) no-repeat center left/100%;
+                }
+            </style>
+        }
         <script>
             function Open() {
                 try {
