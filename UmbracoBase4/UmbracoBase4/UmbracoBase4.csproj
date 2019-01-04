@@ -253,6 +253,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="android-chrome-192x192.png" />
+    <Content Include="android-chrome-512x512.png" />
+    <Content Include="apple-touch-icon.png" />
     <Content Include="App_Data\Logs\UmbracoTraceLog.S001858.txt" />
     <Content Include="App_Data\NuGetBackup\20180901-183307\bin\AutoMapper.dll" />
     <Content Include="App_Data\NuGetBackup\20180901-183307\bin\AutoMapper.Net4.dll" />
@@ -338,6 +341,7 @@
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.controller.js" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.htm" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
+    <Content Include="browserconfig.xml" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\imageprocessor\security.config" />
     <Content Include="config\imageprocessor\processing.config" />
@@ -363,10 +367,15 @@
     <Content Include="config\Lang\zh-CN.user.xml" />
     <Content Include="config\splashes\booting.aspx" />
     <Content Include="config\splashes\noNodes.aspx" />
+    <Content Include="css\minAMP.css" />
+    <Content Include="css\min.css" />
     <Content Include="css\layout.css" />
     <Content Include="css\content.css" />
     <Content Include="css\rte.css" />
     <Content Include="default.aspx" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="images\AMP\arrow.svg" />
     <Content Include="images\AMP\close.svg" />
@@ -379,6 +388,8 @@
     <Content Include="images\AMP\sprite.svg" />
     <Content Include="images\AMP\t_icon.png" />
     <Content Include="images\Logo\MM.png" />
+    <Content Include="js\app.min.js" />
+    <Content Include="js\app.js" />
     <Content Include="Media\Web.config" />
     <Content Include="config\umbracoSettings.config" />
     <Content Include="config\trees.config" />
@@ -432,6 +443,9 @@
     <Content Include="App_Data\umbraco.config" />
     <Content Include="App_Plugins\GridEditors\package.manifest" />
     <None Include="packages.config" />
+    <Content Include="mstile-150x150.png" />
+    <Content Include="robots.txt" />
+    <Content Include="safari-pinned-tab.svg" />
     <Content Include="UmbracoBase4\App_Plugins\StarterKit\lessons.service.js" />
     <Content Include="UmbracoBase4\App_Plugins\StarterKit\StarterKitHelp.Controller.js" />
     <Content Include="UmbracoBase4\App_Plugins\StarterKit\starterkithelp.html" />
@@ -1952,6 +1966,7 @@
     <Content Include="Umbraco\Install\Views\Index.cshtml" />
     <None Include="Properties\PublishProfiles\adwokat-migus.pl - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="site.webmanifest" />
     <None Include="Umbraco\Install\Views\Web.config" />
     <None Include="Umbraco\Js\web.config" />
     <Content Include="Umbraco\lib\angular-dynamic-locale\tmhDynamicLocale.min.js.map" />

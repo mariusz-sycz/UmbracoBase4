@@ -1,0 +1,4 @@
+﻿User-Agent: *
+Disallow: 
+
+Sitemap: https://adwokat-migus.pl/xmlsitemap

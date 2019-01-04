@@ -1,5 +1,7 @@
 ﻿@inherits UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
+    var cacheParam = "?x=0003";
     Layout = null;
     //Check AMP Page
     var isAMP = this.Request.Url.ToString().Contains("amp=true");
@@ -21,11 +23,19 @@
 <!doctype html>
 
 <html @(isAMP ? "⚡" : "") lang="pl">
-    <head>
-        @if (!isAMP && !string.IsNullOrWhiteSpace(gtmCode))
-        {
-            <!-- Google Tag Manager -->
-            <script>
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    @if (!isAMP && !string.IsNullOrWhiteSpace(gtmCode))
+    {
+        <!-- Google Tag Manager -->
+        <script>
     (function(w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
@@ -41,14 +51,14 @@
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', '@gtmCode');
-            </script>
-            <!-- End Google Tag Manager -->
-        }
-        @if (!isAMP && !string.IsNullOrWhiteSpace(gaCode))
-        {
-            <!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=@gaCode"></script>
-            <script>
+        </script>
+        <!-- End Google Tag Manager -->
+    }
+    @if (!isAMP && !string.IsNullOrWhiteSpace(gaCode))
+    {
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=@gaCode"></script>
+        <script>
                 window.dataLayer = window.dataLayer || [];
 
                 function gtag() { dataLayer.push(arguments); }
@@ -56,46 +66,44 @@
                 gtag('js', new Date());
 
                 gtag('config', '@gaCode');
-            </script>
-        }
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+        </script>
+    }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
 
 
-        <title>@title</title>
-        <meta name="description" content="@Model.Content.GetPropertyValue("SeoMetaDescription")">
-        <meta name="author" content="@home.Author">
-        <meta name="keywords" content="@Model.Content.GetPropertyValue("Keywords")">
+    <title>@Html.Raw(title)</title>
+    <meta name="description" content="@Html.Raw(Model.Content.GetPropertyValue("SeoMetaDescription"))">
+    <meta name="author" content="@home.Author">
+    <meta name="keywords" content="@Html.Raw(@Model.Content.GetPropertyValue("Keywords"))">
 
-        <meta property="og:url" content="@this.Request.Url"/>
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="@title"/>
-        <meta property="og:description" content="@Model.Content.GetPropertyValue("SeoMetaDescription")"/>
-        <meta property="og:image" content="@mainImageUrl"/>
+    <meta property="og:url" content="@this.Request.Url" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@Html.Raw(title)" />
+    <meta property="og:description" content="@Html.Raw(Model.Content.GetPropertyValue("SeoMetaDescription"))" />
+    <meta property="og:image" content="@mainImageUrl" />
 
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:site" content="@Model.Content.GetPropertyValue("TwitterName")">
-        <meta name="twitter:title" content="@title">
-        <meta name="twitter:description" content="@Model.Content.GetPropertyValue("SeoMetaDescription")">
-        <meta name="twitter:image" content="@mainImageUrl">
-        <meta name="twitter:image:alt" content="@mainImageAlt">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@Model.Content.GetPropertyValue("TwitterName")">
+    <meta name="twitter:title" content="@Html.Raw(title)">
+    <meta name="twitter:description" content="@Html.Raw(Model.Content.GetPropertyValue("SeoMetaDescription"))">
+    <meta name="twitter:image" content="@mainImageUrl">
+    <meta name="twitter:image:alt" content="@mainImageAlt">
 
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
-        <meta name="amp-experiments-opt-in" content="">
-        @if (isAMP)
-        {
-            <link rel="canonical" href="@(this.Request.Url.ToString().Replace("?amp=true", "").Replace("&amp=true", ""))">
-        }
-        else
-        {
-            <link rel="amphtml" href="@((this.Request.Url.ToString().Contains("?") ? this.Request.Url.ToString() + "&" : "?") + "amp=true")">
-        }
-        <link rel="alternate" href="https://@(this.Request.Url.Host)/" hreflang="pl"/>
-        <link rel="publisher" href="@Model.Content.GetPropertyValue("GoogleAccountUrl")">
+    <meta name="amp-experiments-opt-in" content="">
+    
+    <link rel="canonical" href="@(this.Request.Url.ToString().Replace("?amp=true", "").Replace("&amp=true", ""))">
+    @if (!isAMP)
+    {
+        <link rel="amphtml" href="@((this.Request.Url.ToString().Contains("?") ? this.Request.Url.ToString() + "&" : "?") + "amp=true")">
+    }
+    <link rel="alternate" href="https://@(this.Request.Url.Host)/" hreflang="pl" />
+    <link rel="publisher" href="@Model.Content.GetPropertyValue("GoogleAccountUrl")">
 
-        <script type="application/ld+json">
+    <script type="application/ld+json">
         {
         "@@context": "http://schema.org",
         "@@type": "WebSite",
@@ -104,7 +112,7 @@
         "url": "@this.Request.Url.Authority"
         }
     </script>
-        <script type="application/ld+json">
+    <script type="application/ld+json">
         {
         "@@context": "http://schema.org",
         "@@type": "Organization",
@@ -121,13 +129,13 @@
         }]
         }
     </script>
-        <script type="application/ld+json">
+    <script type="application/ld+json">
         {
         "@@context": "http://schema.org",
         "@@type": "WebPage",
-        "name": "@title",
-        "description": "@Model.Content.GetPropertyValue("SeoMetaDescription")",
-        "keywords": "@Model.Content.GetPropertyValue("Keywords")",
+        "name": "@Html.Raw(title)",
+        "description": "@Html.Raw(Model.Content.GetPropertyValue("SeoMetaDescription"))",
+        "keywords": "@Html.Raw(@Model.Content.GetPropertyValue("Keywords"))",
         "url": "@this.Request.Url.ToString()",
         "dateCreated": "@Model.Content.CreateDate",
         "dateModified": "@Model.Content.UpdateDate",
@@ -136,46 +144,51 @@
         "primaryImageOfPage": "@mainImageUrl",
         "specialty":{
         "@@type" : "Specialty",
-        "name": "@Model.Content.GetPropertyValue("SpecialtyName")",
-        "description": "@Model.Content.GetPropertyValue("SpecialtyDescription")"
+        "name": "@Html.Raw(@Model.Content.GetPropertyValue("SpecialtyName"))",
+        "description": "@Html.Raw(@Model.Content.GetPropertyValue("SpecialtyDescription"))"
         }
         }
     </script>
-        @if (isAMP)
-        {
+    @if (isAMP)
+    {
 
-            <script async src="https://cdn.ampproject.org/v0.js"></script>
-            <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
+        <script async src="https://cdn.ampproject.org/v0.js"></script>
+        <script async custom-element="amp-sidebar" src="https://cdn.ampproject.org/v0/amp-sidebar-0.1.js"></script>
         @*<script async custom-element="amp-accordion" src="https://cdn.ampproject.org/v0/amp-accordion-0.1.js"></script>*@
-            <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+        <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
         @*<script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>*@
-            <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+        <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
         @*<script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>*@
-            if (Model.Content is Contact)
-            {
-                <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
-                <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
-            }
-            <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
-            <style amp-custom>
-                
-                @Html.Raw(customFont);
-                @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/layout.css")).Replace("attr(data-image)", home.SiteLogo.Url).Replace(".i-amphtml-sidebar-mask",".amphtml-sidebar-mask"))
-                @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/content.css")).Replace("attr(data-image)", home.SiteLogo.Url))
-                
-            </style>
-        }
-        else
+        if (Model.Content is Contact)
         {
-            <link rel="stylesheet" href="@Url.Content("~/css/layout.css")"/>
-            <link rel="stylesheet" href="@Url.Content("~/css/content.css")"/>
-            <style>
+            <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+            <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+        }
+
+        <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+        <style amp-custom>
                 @Html.Raw(customFont);
+                @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/minAMP.css"))
+               .Replace("attr(data-image)", home.SiteLogo.Url).Replace(".i-amphtml-sidebar-mask",".amphtml-sidebar-mask"))
+
+        </style>
+    }
+    else
+    {
+        <link rel="stylesheet" href="@Url.Content("~/css/min.css")@cacheParam" />        
+        if (home != null && home.SiteLogo != null)
+        {
+            <style>
+                .header .left-nav .header-title {
+                    background: url(@home.SiteLogo.Url) no-repeat center left/100%;
+                }
             </style>
         }
-    </head>
+        <style>@Html.Raw(customFont)</style>
+    }
+</head>
 
-    <body class="home amp-mode-mouse frontpage">
+<body class="home amp-mode-mouse frontpage">
     @if (!string.IsNullOrWhiteSpace(gtmCode))
     {
         <!-- Google Tag Manager (noscript) -->
@@ -197,86 +210,59 @@
         </div>
     </div>
 
-    <footer class="col-xs-12">
-        <div class="footer">
+    <div class="wrap footer">
+        <div class="container xl">
+            <div class="col-xs-12 col-sm-6">
+                <div class="info row">
+                    <p>@home.FooterHeader</p>
+                    @if (home.AddressArea != null)
+                    {
+                        <section class="section">
+                            @home.AddressArea
+                        </section>
+                    }
+                </div>
+            </div>
+
             <div class="col-xs-12 col-sm-6">
                 <div class="info">
-                    <p>@home.FooterHeader</p>
+
+                    <span>@home.SocialLinksDescription</span>
+                    <br>
+                    @if (!string.IsNullOrWhiteSpace(home.FacebookUrl))
+                    {
+                        <a class="facebookLink" href="@home.FacebookUrl" title="Facebook">
+                            @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "~/images/amp/fb_icon.png", Alt = "Facebook", Width = 50, Height = 50, Static = true })
+                        </a>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(home.GoogleAccountUrl))
+                    {
+                        <a class="googlePlus" href="@home.GoogleAccountUrl" rel="publisher" target="_top">
+                            @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "//ssl.gstatic.com/images/icons/gplus-32.png", Alt = "Google+", Width = 50, Height = 50, Static = true })
+                        </a>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(home.TwitterUrl))
+                    {
+                        <a href="@home.TwitterUrl" class="twiter">
+                            @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "~/Images/amp/t_icon.png", Alt = "Twiter", Width = 50, Height = 50, Static = true })
+                        </a>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(home.LinkedInUrl))
+                    {
+                        <a href="@home.LinkedInUrl" class="linkedin">
+                            @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "~/Images/amp/linkedin.png", Alt = "LinkedIn", Width = 50, Height = 50, Static = true })
+                        </a>
+                    }
                 </div>
             </div>
         </div>
-
-        <div class="col-xs-12 col-sm-6">
-            <div class="info">
-
-                <span>@home.SocialLinksDescription</span>
-                <br>
-                @if (!string.IsNullOrWhiteSpace(home.FacebookUrl))
-                {
-                    <a class="facebookLink" href="@home.FacebookUrl" title="Facebook">
-                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "~/images/amp/fb_icon.png", Alt = "Facebook", Width = 50, Height = 50, Static = true })
-                    </a>
-                }
-                @if (!string.IsNullOrWhiteSpace(home.GoogleAccountUrl))
-                {
-                    <a class="googlePlus" href="@home.GoogleAccountUrl" rel="publisher" target="_top">
-                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "//ssl.gstatic.com/images/icons/gplus-32.png", Alt = "Google+", Width = 50, Height = 50, Static = true })
-                    </a>
-                }
-                @if (!string.IsNullOrWhiteSpace(home.TwitterUrl))
-                {
-                    <a href="@home.TwitterUrl" class="twiter">
-                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "~/Images/amp/t_icon.png", Alt = "Twiter", Width = 50, Height = 50, Static = true })
-                    </a>
-                }
-                @if (!string.IsNullOrWhiteSpace(home.LinkedInUrl))
-                {
-                    <a href="@home.LinkedInUrl" class="linkedin">
-                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = isAMP, Src = "~/Images/amp/linkedin.png", Alt = "LinkedIn", Width = 50, Height = 50, Static = true })
-                    </a>
-                }
-            </div>
-        </div>
-    </footer>
+    </div>
 
     @if (!isAMP)
-    {
-        if (home != null && home.SiteLogo != null)
-        {
-            <style>
-                .header .left-nav .header-title {
-                    background: url(@home.SiteLogo.Url) no-repeat center left/100%;
-                }
-            </style>
-        }
-        <script>
-            function Open() {
-                try {
-                    el = window.document.getElementById("sidebar");
-                    el.setAttribute("open", "");
-                }
-                catch (err) {
-                    Log(err);
-                }
-            }
-            function Close() {
-                try {
-                    el = window.document.getElementById("sidebar");
-                    el.removeAttribute("open");
-                }
-                catch (err) {
-                    Log(err);
-                }
-            }
-            function Log(message) {
-                try {
-                    console.log(message);
-                }
-                catch (err) { }
-            }
-        </script>
+    {        
+        <script type="text/javascript" src="@Url.Content("~/js/app.min.css")@cacheParam" async></script>
     }
-    </body>
+</body>
 
 
-    </html>
+</html>

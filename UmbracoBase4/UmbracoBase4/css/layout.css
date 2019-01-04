@@ -298,6 +298,10 @@ p:last-child {
     margin: 0 auto;
     overflow: hidden
 }
+    .wrap.footer {
+        background-color: #020f05;
+        color: white;
+    }
 
 :target::before {
     content: '';
@@ -2403,11 +2407,11 @@ p:last-child {
         margin: 0 -15px
     }
 
-    footer {
-        padding-top: 20px;
-        background-color: #335033;
-        color: #fff
-    }
+footer {
+    padding-top: 20px;
+    background-color: #020f05;
+    color: #fff
+}
 
     .container.footer {
         padding: 0
@@ -2780,3 +2784,7 @@ p:last-child {
         background-color: #000;
         z-index: 2147483646
     }
+.row.clearfix {
+    width: 100%;
+    display: inline-block;
+}
