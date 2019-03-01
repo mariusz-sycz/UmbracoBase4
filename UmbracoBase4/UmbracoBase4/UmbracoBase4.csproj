@@ -442,10 +442,13 @@
     <Content Include="App_Data\packages\installed\installedPackages.config" />
     <Content Include="App_Data\umbraco.config" />
     <Content Include="App_Plugins\GridEditors\package.manifest" />
+    <Content Include="fonts\7XUFZ5tgS-tD6QamInJTcSo_WB_cotcEMUw1LsIE8mM.woff2" />
+    <Content Include="fonts\7XUFZ5tgS-tD6QamInJTcZSnX671uNZIV63UdXh3Mg0.woff2" />
     <None Include="packages.config" />
     <Content Include="mstile-150x150.png" />
     <Content Include="robots.txt" />
     <Content Include="safari-pinned-tab.svg" />
+    <Content Include="Service-Worker.js" />
     <Content Include="UmbracoBase4\App_Plugins\StarterKit\lessons.service.js" />
     <Content Include="UmbracoBase4\App_Plugins\StarterKit\StarterKitHelp.Controller.js" />
     <Content Include="UmbracoBase4\App_Plugins\StarterKit\starterkithelp.html" />
@@ -2095,6 +2098,7 @@
     <Content Include="Views\ContentPageWithFiles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2109,6 +2113,10 @@
     <Content Include="App_Code\publishDateSetter.cs" />
     <Compile Include="App_Plugins\Form\FormController.cs" />
     <Compile Include="App_Plugins\Form\FormData.cs" />
+    <Compile Include="App_Plugins\PushFiles\PushPromiseAttribute .cs" />
+    <Compile Include="App_Plugins\PushFiles\PushPromiseExtensions.cs" />
+    <Compile Include="App_Plugins\PushFiles\PushPromiseTable.cs" />
+    <Compile Include="App_Plugins\PushFiles\UmbracoApplicationWithHttpPush.cs" />
     <Compile Include="Models\Amp\Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

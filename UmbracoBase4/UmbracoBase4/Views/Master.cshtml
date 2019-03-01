@@ -1,7 +1,7 @@
 ﻿@inherits UmbracoTemplatePage
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-    var cacheParam = "?x=0003";
+    var cacheParam = "";
     Layout = null;
     //Check AMP Page
     var isAMP = this.Request.Url.ToString().Contains("amp=true");
@@ -186,6 +186,8 @@
         }
         <style>@Html.Raw(customFont)</style>
     }
+    <!---SEO links-->
+    <meta name="flattr:id" content="plzxjk">
 </head>
 
 <body class="home amp-mode-mouse frontpage">
@@ -260,7 +262,7 @@
 
     @if (!isAMP)
     {        
-        <script type="text/javascript" src="@Url.Content("~/js/app.min.css")@cacheParam" async></script>
+        <script type="text/javascript" src="@Url.Content("~/js/app.min.js")@cacheParam" async></script>
     }
 </body>
 

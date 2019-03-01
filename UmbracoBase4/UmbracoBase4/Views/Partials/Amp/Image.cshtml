@@ -3,10 +3,10 @@
 @{
     if (Model.IsAmp)
     {
-        <amp-img src="@Url.Content(Model.Src)" alt="@Model.Alt" height="@Model.Height" width="@Model.Width" @(Model.Static ? "":"layout=responsive")></amp-img>
+        <amp-img src="@Url.Content(Model.Src)" alt="@Model.Alt" height="@Model.Height" width="@Model.Width" @(Model.Static ? "" : "layout=responsive")></amp-img>
     }
     else
     {
-        <img src="@Url.Content(Model.Src)" alt="@Model.Alt"/>
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB9AAAAABCAYAAACG/TV9AAAAHElEQVRYw+3BAQEAAACAkP6v7ggKAAAAAAAAAGgfQQABGuiITwAAAABJRU5ErkJggg==" data-src="@Url.Content(Model.Src)" alt="@Model.Alt"/>
     }
 }

@@ -4,16 +4,16 @@
     var isAMP = this.Request.Url.ToString().Contains("amp=true");
     var site = Model.Content.Site();
     var mainImageUrl = (Model.Content.GetPropertyValue("SiteLogo") as Image) != null ? ((Image)Model.Content.GetPropertyValue("SiteLogo")).Url : string.Empty;
-    var selection = site.Children.Where(x => x.IsVisible());
+    var selection = site.Children.Where(x => x.IsVisible() && !x.GetPropertyValue<bool>("umbracoNavihide"));
     var index = 1;
 }
 <amp-sidebar id='sidebar' side='right' layout='nodisplay'>
     <form class="menu-layer primary" action="/" target="_top">
-        <button type="reset" class="close-button" id="menu-button-close" @(isAMP ? "on='tap:sidebar.toggle'": "") @(isAMP ? "" :  "onclick=Close();") aria-label="Close Mobile Menu"></button>
+        <button type="reset" class="close-button" id="menu-button-close" @(isAMP ? "on=tap:sidebar.toggle": "") @(isAMP ? "" :  "onclick=Close();") aria-label="Close Mobile Menu"></button>
         <div class="items">
             @foreach (var item in selection)
             {
-                if (!item.Children.Any())
+                if (!item.Children.Where(x => x.IsVisible()).Any())
                 {
                     <a class="menu-item item-layer-1 @(item.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@item.Url">@item.Name</a>
                 }
@@ -24,12 +24,12 @@
                         @item.Name
                         <div class="submenu menu-layer secondary">
                             <div class="return-button">Back</div>
-                            <button type="reset" class="close-button" id="menu-button-close-mobile-@((index++).ToString())" @(isAMP ? "on='tap:sidebar.toggle'":"") aria-label="Close Mobile Menu"></button>
+                            <button type="reset" class="close-button" id="menu-button-close-mobile-@((index++).ToString())" @(isAMP ? "on=tap:sidebar.toggle":"") aria-label="Close Mobile Menu"></button>
                             <div class="items">
                                 <a class="menu-item item-layer-2  @(item.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@item.Url">@item.Name</a>
-                                @foreach (var subItem in item.Children)
+                                @foreach (var subItem in item.Children.Where(x=>x.IsVisible()))
                                 {
-                                    if (!subItem.Children.Any())
+                                    if (!subItem.Children.Where(x => x.IsVisible()).Any())
                                     {
                                         <a class="menu-item item-layer-2  @(subItem.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@subItem.Url">@subItem.Name</a>
                                     }
@@ -40,11 +40,11 @@
                                             @subItem.Name
                                             <div class="submenu menu-layer tertiary">
                                                 <div class="return-button">Back</div>
-                                                <button type="reset" class="close-button" id="menu-button2" @(isAMP ? "on='tap:sidebar.toggle'" : "")></button>
+                                                <button type="reset" class="close-button" id="menu-button2" @(isAMP ? "on=tap:sidebar.toggle" : "")></button>
                                                 <div class="items">
-                                                    @foreach (var subItem2 in subItem.Children)
+                                                    @foreach (var subItem2 in subItem.Children.Where(x => x.IsVisible()))
                                                     {
-                                                        if (!subItem2.Children.Any())
+                                                        if (!subItem2.Children.Where(x => x.IsVisible()).Any())
                                                         {
                                                             <a class="menu-item item-layer-3  @(subItem2.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@subItem2.Url">@subItem2.Name</a>
                                                         }
@@ -150,20 +150,20 @@
                         <div class="tab">
                             <a class="menu-item @(item.IsAncestorOrSelf(Model.Content) ? "active" : null)" href="@item.Url">@item.Name</a>
 
-                            @if (item.Children().Any())
+                            @if (item.Children().Where(x => x.IsVisible()).Any())
                             {
                                 <div class="list-container">
                                     <div class="list-shadow"></div>
                                     <ul>
-                                        @foreach (var subItem in item.Children())
+                                        @foreach (var subItem in item.Children().Where(x => x.IsVisible()))
                                         {
 
-                                            if (subItem.Children.Any())
+                                            if (subItem.Children.Where(x => x.IsVisible()).Any())
                                             {
                                                 <li class="has-sublist">
                                                     <a href="@subItem.Url">@subItem.Name</a>
                                                     <ul class="sublist">
-                                                        @foreach (var subItem2 in subItem.Children())
+                                                        @foreach (var subItem2 in subItem.Children().Where(x => x.IsVisible()))
                                                         {
                                                             <li>
                                                                 <a href="@subItem2.Url" itemprop="url"><span itemprop="name">@subItem2.Name</span></a>
@@ -192,7 +192,7 @@
                     <input name="as_sitesearch" type="hidden" value="@this.Request.Url.Host">
                     <button name="search" type="submit"></button>
                 </form>
-                <button class="tab hamburger" id="menu-button-open" @(isAMP ? "on='tap:sidebar.toggle'": "") @(isAMP ? "":"onclick=Open();") >Menu</button>
+                <button class="tab hamburger" id="menu-button-open" @(isAMP ? "on=tap:sidebar.toggle": "") @(isAMP ? "":"onclick=Open();") >Menu</button>
             </div>
         </div>
     </div>

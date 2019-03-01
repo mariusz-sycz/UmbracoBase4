@@ -1,22 +1,28 @@
-﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+﻿@using ContentModels = Umbraco.Web.PublishedContentModels;
+@using Umbraco.Web;
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    var startNodeId = Model.MacroParameters["startNodeId"] != null ? Model.MacroParameters["startNodeId"] : Model.Content.Id;
 
 
-@*
-    This snippet lists the items from a Multinode tree picker, using the pickers default settings.
-    Content Values stored as xml.
+}
+@if (startNodeId != null)
+{
+    @* Get the starting page *@
+var startNode = Umbraco.TypedContent(startNodeId);
+var products = startNode.Children.OrderByDescending(x => x.CreateDate).ToList();
+var pagedProducts = products.OrderBy(x => x.SortOrder).ToList();
 
-    To get it working with any site's data structure, set the selection equal to the property which has the
-    multinode treepicker (so: replace "PropertyWithPicker" with the alias of your property).
-*@
+if (pagedProducts.Count > 0)
+{
+        <div class="blogposts">
 
-@{ var selection = CurrentPage.PropertyWithPicker.Split(','); }
-
-<ul>
-    @foreach (var id in selection)
-    {
-        var item = Umbraco.Content(id);
-        <li>
-            <a href="@item.Url">@item.Name</a>
-        </li>
+            @foreach (ContentModels.Product post in pagedProducts)
+            {
+                <div class="product">
+                    <span>post.Description</span>
+                </div>
+            }
+        </div>
     }
-</ul>
+}

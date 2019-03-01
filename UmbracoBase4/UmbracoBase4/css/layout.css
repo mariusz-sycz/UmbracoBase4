@@ -2788,3 +2788,11 @@ footer {
     width: 100%;
     display: inline-block;
 }
+p > img, h2 > img {
+    width: unset;
+}
+a.blogpost {
+    color: var(--lct);
+    text-transform: none;
+    text-align: center;
+}

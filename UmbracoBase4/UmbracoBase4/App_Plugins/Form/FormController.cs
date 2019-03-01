@@ -9,6 +9,7 @@ using System.Web.Http.Controllers;
 using System.Web.Mvc;
 using Umbraco.Web.Mvc;
 using Umbraco.Web.WebApi;
+using Umbraco.Core.Logging;
 
 namespace UmbracoBase4.App_Plugins.Form
 {
@@ -19,8 +20,12 @@ namespace UmbracoBase4.App_Plugins.Form
         {
             return new[] { "Table", "Chair", "Desk", "Computer", "Beer fridge" };
         }
-        public object SendFormAMP([FromBody] FormData data)
+
+        public object SendFormAMP()
         {
+            var name = HttpContext.Current.Request.Form["name"];
+            var email = HttpContext.Current.Request.Form["email"];
+            var message = HttpContext.Current.Request.Form["message"];
             var errorMessage = string.Empty;
             HttpContext.Current.Response.Headers.Add("AMP-Access-Control-Allow-Source-Origin", this.Request.RequestUri.Scheme + "://" + this.Request.RequestUri.Host);
 
@@ -35,17 +40,18 @@ namespace UmbracoBase4.App_Plugins.Form
             else
             {
 
-                if (ValidateForm(data.Name, data.Email, data.Message))
+                if (ValidateForm(name, email, message))
                 {
                     try
                     {
-                        SendEmail(data.Email, data.Name, data.Message);
+                        SendEmail(email, name, message);
                         HttpContext.Current.Response.Headers.Add("AMP-Redirect-To", "//" + HttpContext.Current.Request.Url.Host + "/FormularzWyslany");
                         return new { Success = true };
                     }
                     catch (Exception ex)
                     {
                         errorMessage = "Przepraszamy wystąpił błąd podczas wysyłania wiadomości. Prosimy o&nbsp;kontakt telefoniczny lub za&nbsp;pomocą adresu email: <a href='mailTo:kancelaria@adwokat-szkudlarek.pl' title='mailTo:kancelaria@adwokat-szkudlarek.pl'>mailTo:kancelaria@adwokat-szkudlarek.pl</a>";
+                        LogHelper.Error(typeof(FormController), errorMessage, ex);
                         return Json(new { Success = false, ErrorMessage = ex.Message });
                     }
                 }
@@ -77,8 +83,9 @@ namespace UmbracoBase4.App_Plugins.Form
                         return null;
                     }
                     catch (Exception ex)
-                    {
+                    {   
                         errorMessage = "Przepraszamy wystąpił błąd podczas wysyłania wiadomości. Prosimy o&nbsp;kontakt telefoniczny lub za&nbsp;pomocą adresu email: <a href='mailTo:kancelaria@adwokat-szkudlarek.pl' title='mailTo:kancelaria@adwokat-szkudlarek.pl'>mailTo:kancelaria@adwokat-szkudlarek.pl</a>";
+                        LogHelper.Error(typeof(FormController), errorMessage, ex);
                     }
                 }
                 else
@@ -87,7 +94,7 @@ namespace UmbracoBase4.App_Plugins.Form
                 }
             }
 
-            HttpContext.Current.Response.Redirect("KontaktLokalizacja?message=" + errorMessage);
+            HttpContext.Current.Response.Redirect("//" + HttpContext.Current.Request.Url.Host + "/Kontakt?message=" + errorMessage);
             return null;
         }
 
