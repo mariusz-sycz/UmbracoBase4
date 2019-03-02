@@ -2,9 +2,37 @@
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
     Layout = "Master.cshtml";
+    var index = 0;
     var backgroundImage = Model.Content.HeroBackgroundImage != null ? Model.Content.HeroBackgroundImage.Url : String.Empty;
 }
 
 <section class="section">
     @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
+</section>
+<section class="row clearfix ">
+    @foreach (var c in Model.Content.Children)
+    {
+        if (c.UrlName == "usługi")
+        {
+            foreach (var p in c.Children)
+            {
+                var image = p.GetPropertyValue("ServiceIcon");
+                var url = (image as Image).Url;
+                var altText = p.GetPropertyValue<string>("ServiceIconAlt");
+                index++;
+                <div class="col-md-6 column center">
+                    <div class="image" style="width: 150px; margin: auto;">
+                        @Html.Partial("Partials/Amp/Image", new UmbracoBase4.Models.Amp.Image() { IsAmp = this.Request.Url.ToString().Contains("amp=true"), Src = url, Alt = altText, Width = (image as Image).GetPropertyValue<int>("UmbracoWidth"), Height = (image as Image).GetPropertyValue<int>("UmbracoHeight"), Static = false })
+                    </div>
+                    <h2>@(p.GetPropertyValue("ServiceName"))</h2>
+                    @(p.GetPropertyValue("Description"))
+                    <a href="@(p.Url)" title="@(p.GetPropertyValue("ServiceName"))"><b>@(p.GetPropertyValue("ServiceName")) >></b></a>
+                </div>
+                if (index % 2 == 0)
+                {
+                    <div class="row clearfix visible-md visible-lg"></div>
+                }
+            }
+        }
+    }
 </section>
