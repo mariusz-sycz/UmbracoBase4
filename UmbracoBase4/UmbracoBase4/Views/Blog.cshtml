@@ -2,9 +2,11 @@
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
     Layout = "Master.cshtml";
+    var index = 0;
 }
-@Html.Partial("~/Views/Partials/SectionHeader.cshtml")
-
+<section class="section">
+    @Html.GetGridHtml(Model.Content, "bodyText", "bootstrap3-fluid")
+</section>
 <section class="section">
 
     <div class="container">
@@ -15,7 +17,11 @@
                          numberOfPosts = Model.Content.HowManyPostsShouldBeShown,
                          startNodeId = Model.Content.Id
                      })
-       
+
     </div>
 
 </section>
+
+
+<br />
+<br />
