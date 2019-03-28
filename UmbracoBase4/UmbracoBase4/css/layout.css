@@ -1643,7 +1643,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
         display: inline-block;
         max-width: 100%;
         margin-bottom: 5px;
-        font-weight: 700
     }
 
     input[type="search"] {
