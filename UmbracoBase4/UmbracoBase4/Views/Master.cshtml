@@ -255,6 +255,12 @@
             </div>
 
             <div class="col-xs-12 col-sm-6">
+                @if (!this.Request.Url.AbsoluteUri.Contains("kontakt"))
+                {
+                    <div class="formularzKontaktowy">
+                        @{ Html.RenderPartial("Amp/FormularzKontaktowy");}
+                    </div>
+                }
                 <div class="info">
 
                     <span>@home.SocialLinksDescription</span>
