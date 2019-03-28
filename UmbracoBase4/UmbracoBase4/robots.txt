@@ -1,4 +1,4 @@
 ﻿User-Agent: *
-Disallow: 
+Disallow: *
 
-Sitemap: https://adwokat-migus.pl/xmlsitemap
+Sitemap: https://test.elpreserwis.pl/xmlsitemap

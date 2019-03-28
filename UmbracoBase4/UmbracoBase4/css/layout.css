@@ -362,16 +362,19 @@ p:last-child {
             color: #0379c4;
             text-transform: none;
             white-space: nowrap;
-            width: 70px;
+            width: 90px;
             height: 70px;
             float: left;
         }
 
 .name {
-    padding-top: 20px;
-    padding-left: 75px;
+    padding-top: 27px;
+    padding-left: 0px;
     text-align: left;
+    width: 260px;
     color: #333;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .ll {

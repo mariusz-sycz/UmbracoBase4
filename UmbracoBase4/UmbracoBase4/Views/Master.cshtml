@@ -29,7 +29,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileColor" content="#00a300">
     <meta name="theme-color" content="#ffffff">
 
     @if (!isAMP && !string.IsNullOrWhiteSpace(gtmCode))
@@ -94,7 +94,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
 
     <meta name="amp-experiments-opt-in" content="">
-    
+
     <link rel="canonical" href="@(this.Request.Url.ToString().Replace("?amp=true", "").Replace("&amp=true", ""))">
     @if (!isAMP)
     {
@@ -165,7 +165,73 @@
             <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
         }
 
-        <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+        <style amp-boilerplate>
+            body {
+                -webkit-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+                -moz-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+                -ms-animation: -amp-start 8s steps(1,end) 0s 1 normal both;
+                animation: -amp-start 8s steps(1,end) 0s 1 normal both
+            }
+
+            @@-webkit-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @@-moz-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @@-ms-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @@-o-keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+
+            @@keyframes -amp-start {
+                from {
+                    visibility: hidden
+                }
+
+                to {
+                    visibility: visible
+                }
+            }
+        </style>
+        <noscript>
+        <style amp-boilerplate>
+            body {
+                -webkit-animation: none;
+                -moz-animation: none;
+                -ms-animation: none;
+                animation: none
+            }
+        </style></noscript>
         <style amp-custom>
                 @Html.Raw(customFont);
                 @Html.Raw(System.IO.File.ReadAllText(Server.MapPath("~/css/minAMP.css"))
@@ -175,7 +241,7 @@
     }
     else
     {
-        <link rel="stylesheet" href="@Url.Content("~/css/min.css")@cacheParam" />        
+        <link rel="stylesheet" href="@Url.Content("~/css/min.css")@cacheParam" />
         if (home != null && home.SiteLogo != null)
         {
             <style>
@@ -185,25 +251,25 @@
             </style>
         }
         <style>@Html.Raw(customFont)</style>
-        
+
         <!---IMAGE LAZY-LOADING-->
         <script>
-            window.addEventListener('load', function(){
-                var allimages= document.getElementsByTagName('img');
-                for (var i=0; i<allimages.length; i++) {
+            window.addEventListener('load', function () {
+                var allimages = document.getElementsByTagName('img');
+                for (var i = 0; i < allimages.length; i++) {
                     if (allimages[i].getAttribute('data-src')) {
                         allimages[i].setAttribute('src', allimages[i].getAttribute('data-src'));
                     }
                 }
             }, false)
         </script>
-        
+
         <!---SERVICE-WORKER-->
         <script>
             const PATH = '/service-worker.js?t=t1';
-            
+
             let isServiceWorkersSupport = ('serviceWorker' in navigator);
-            
+
             if (isServiceWorkersSupport) {
                 console.log('Will service worker register?');
                 navigator.serviceWorker.register(PATH).then(function () {
