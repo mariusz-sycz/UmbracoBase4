@@ -328,3 +328,5 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+UmbracoBase4/UmbracoBase4/App_Data/Logs/
+UmbracoBase4/UmbracoBase4/App_Data/TEMP/
